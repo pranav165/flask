@@ -39,21 +39,21 @@
 
     <script type="text/javascript">
       function startInstance(instance_id) {
-          // You can use AJAX to make a POST request to your backend route for starting the instance
-          // Don't forget to handle any errors and provide feedback to the user
-          alert('Start instance: ' + instance_id);
+          $.post('/start_instance', { instance_id: instance_id }, function (data) {
+              alert(data.message);
+          });
       }
 
       function stopInstance(instance_id) {
-          // You can use AJAX to make a POST request to your backend route for stopping the instance
-          // Don't forget to handle any errors and provide feedback to the user
-          alert('Stop instance: ' + instance_id);
+          $.post('/stop_instance', { instance_id: instance_id }, function (data) {
+              alert(data.message);
+          });
       }
 
       function deleteInstance(instance_id) {
-          // Implement your code to delete the EC2 instance with the given instance_id
-          // You can use AJAX to make a POST request to your backend route for deleting the instance
-          alert('Delete instance: ' + instance_id);
+          $.post('/delete_instance', { instance_id: instance_id }, function (data) {
+              alert(data.message);
+          });
       }
 
       function actionButtonsFormatter(value, row) {

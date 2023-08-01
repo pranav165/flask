@@ -124,15 +124,37 @@ def show_all_connected():
 
     return render_template('landing_page.html', enviornments=Env.query.all())
 
-def start_env(instance_id):
-    print("Starting enviornment  --- {}".format(instance_id))
-    sleep(60)
-    print("STARTED")
+# def start_env(instance_id):
+#     print("Starting enviornment  --- {}".format(instance_id))
+#     sleep(60)
+#     print("STARTED")
 
-def stop_env(instance_id):
-    print("Stopping enviornment  --- {}".format(instance_id))
-    sleep(60)
-    print("Stopped")
+# def stop_env(instance_id):
+#     print("Stopping enviornment  --- {}".format(instance_id))
+#     sleep(60)
+#     print("Stopped")
+
+
+@app.route('/start_instance', methods=['POST'])
+def start_instance():
+    instance_id = request.form.get('instance_id')
+    return jsonify({'message': 'Instance started successfully'})
+
+@app.route('/stop_instance', methods=['POST'])
+def stop_instance():
+    instance_id = request.form.get('instance_id')
+    return jsonify({'message': 'Instance stopped successfully'})
+
+@app.route('/delete_instance', methods=['POST'])
+def delete_instance():
+    instance_id = request.form.get('instance_id')
+    # code to delete the EC2 instance with the given instance_id
+    print("Deleting instance: {}".format(instance_id))
+    sleep(5)
+    print("Instance deleted")
+    return jsonify({'message': 'Instance deleted successfully'})
+
+
 
 def populate_running_envs(account=AWS_ACCOUNTS.DEV):
     envs = get_running_custom_envs(account=account)
