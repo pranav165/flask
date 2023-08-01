@@ -1,0 +1,5 @@
+flask
+boto3
+flask-sqlalchemy
+flask-bootstrap
+SQLAlchemy-serializer
