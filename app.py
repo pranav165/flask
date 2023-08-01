@@ -149,9 +149,8 @@ def stop_instance():
 def delete_instance():
     instance_id = request.form.get('instance_id')
     # code to delete the EC2 instance with the given instance_id
-    print("Deleting instance: {}".format(instance_id))
-    sleep(5)
-    print("Instance deleted")
+    # print("Deleting instance: {}".format(instance_id))
+    # print("Instance deleted")
     return jsonify({'message': 'Instance deleted successfully'})
 
 
