@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from utils.get_running_env import get_running_custom_envs, AWS_ACCOUNTS
 from sqlalchemy_serializer import SerializerMixin
 from flask import jsonify
+from time import sleep
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -75,11 +76,7 @@ def show_all():
             {
                 'field': 'owner',
                 'title': 'Environment Owner'
-            },
-            {
-                'field': 'Actions',
-                'title': 'Actions'
-            },
+            }
         ]
         return render_template('show_all_bootstrap.html', data=envs, columns=columns)
 
@@ -122,15 +119,20 @@ def show_all_connected():
                 'field': 'owner',
                 'title': 'Environment Owner'
             },
-            {
-                'field': 'Actions',
-                'title': 'Actions'
-            },
         ]
         return render_template('show_all_bootstrap.html', data=envs, columns=columns)
 
     return render_template('landing_page.html', enviornments=Env.query.all())
 
+def start_env(instance_id):
+    print("Starting enviornment  --- {}".format(instance_id))
+    sleep(60)
+    print("STARTED")
+
+def stop_env(instance_id):
+    print("Stopping enviornment  --- {}".format(instance_id))
+    sleep(60)
+    print("Stopped")
 
 def populate_running_envs(account=AWS_ACCOUNTS.DEV):
     envs = get_running_custom_envs(account=account)
